@@ -1,0 +1,15 @@
+services:
+  front:
+    build: .
+    image: portfolio:v1
+    ports:
+      - "8080:80"
+    networks:
+      - front
+    volumes:
+      - front:/usr/share/nginx/html
+
+networks:
+  front:
+volumes:
+  front:
