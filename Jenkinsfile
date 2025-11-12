@@ -1,9 +1,24 @@
 pipeline {
-    agent { docker { image 'node:24.11.0-alpine3.22' } }
+    agent any
+
     stages {
-        stage('build') {
+        stage('Instalar Node.js') {
             steps {
-                sh 'node --version'
+                // Actualiza paquetes e instala Node.js
+                sh '''
+                    sudo apt-get update -y
+                    sudo apt-get install -y nodejs npm
+                    node -v
+                    npm -v
+                '''
+            }
+        }
+
+        stage('Validar instalación') {
+            steps {
+                sh '''
+                    echo "Node.js y npm instalados correctamente"
+                '''
             }
         }
     }
